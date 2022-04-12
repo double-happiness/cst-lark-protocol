@@ -1,0 +1,32 @@
+syntax = "proto3";
+option go_package = "";
+
+message NextSeqReq {
+  string bizTag = 1;
+}
+
+message NextSeqResp {
+  string bizTag = 1;
+  int64 seqId = 2;
+}
+
+message SegmentReq {
+  string bizTag = 1;
+  int32 count = 2;
+}
+
+message SegmentResp {
+  string bizTag = 1;
+  int64 start = 2;
+  int64 end = 3;
+}
+
+message syncRouteTableReq {}
+
+message syncRouteTableResp {}
+
+service Lark {
+  rpc SyncRouteTable(syncRouteTableReq) returns (syncRouteTableResp);
+  rpc NextSeq(NextSeqReq) returns (NextSeqResp);
+  rpc Segment(SegmentReq) returns (SegmentResp);
+}
